@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="content">
+    <div class="map" id="map" class="match-parent"></div>
+  </div>
+  <div class="footer">
+    <div class="rent">
+      <div class="labels">
+        <div class="minLabel">Min Rent:</div>
+        <div class="maxLabel">Max Rent:</div>
+      </div>
+      <div class="values">
+        <div class="minValue">{{ minValueRent | number : '' : 'de-DE' }}</div>
+        <div class="maxValue">{{ maxValueRent | number : '' : 'de-DE' }}</div>
+      </div>
+    </div>
+    <div class="compass">
+    </div>
+    <div class="valuation">
+      <div class="labels">
+        <div class="minLabel">Min Price:</div>
+        <div class="maxLabel">Max Price:</div>
+      </div>
+      <div class="values">
+        <div class="minValue">
+          {{ minValueValuation | number : '' : 'de-DE' }}
+        </div>
+        <div class="maxValue">
+          {{ maxValueValuation | number : '' : 'de-DE' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
