@@ -26,9 +26,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddSignalR();
 
+builder.Services.Configure<StorageOptions>(options => builder.Configuration.GetSection(StorageOptions.Storage));
+
 builder.Services.AddDbContext<OnionContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 builder.Services.AddTransient<DbContext, OnionContext>();
-builder.Services.AddTransient<IRepository<Value>, EFRepository<Value>>();
+builder.Services.AddTransient<IRepository<Value, int>, EFRepository<Value, int>>();
+builder.Services.AddTransient<IRepository<Feature, int>, EFRepository<Value, int>>();
 builder.Services.AddTransient<IValueService, ValueService>();
 builder.Services.AddTransient<IValuationService, ValuationService>();
 
@@ -47,7 +50,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("CorsPolicy");
 app.MapHub<ValuationHub>("/valuationHub");
-//app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();

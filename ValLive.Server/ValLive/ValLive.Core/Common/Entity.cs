@@ -1,7 +1,7 @@
 ﻿namespace ValLive.Core.Common
 {
-    public abstract class Entity
+    public abstract class Entity<TKey>
     {
-        public int Id { get; set; }
+        public TKey Id { get; set; }
     }
 }

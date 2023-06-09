@@ -10,7 +10,7 @@ using ValLive.Core.Interfaces;
 
 namespace ValLive.Infrastructure.Data
 {
-    public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
+    public class EFRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : Entity<TKey>
     {
         protected readonly DbContext _context;
         protected readonly DbSet<TEntity> _entities;
@@ -29,9 +29,9 @@ namespace ValLive.Infrastructure.Data
             return await Task.FromResult<IEnumerable<TEntity>>(_entities.Where(predicate));
         }
 
-        public async Task<TEntity> GetAsync(int Id)
+        public async Task<TEntity?> GetAsync(TKey id)
         {
-            return await _entities.FindAsync(Id);
+            return await _entities.FindAsync(id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
